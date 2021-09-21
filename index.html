@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Guess My...</title>
+</head>
+<body>
+    <header>
+        <h1>Guess My Number</h1>
+        <p id="guess-what">( Between 1 and 20 )</p>
+        <button class="btn" id="again">Again!</button>
+        <div id="number">?</div>
+    </header>
+    <main>
+        <section id="left">
+            <input type="text" id="player-guess" maxlength="2">
+            <button class="btn" id="check">Check!</button>
+        </section>
+        <section id="right">
+            
+            <table id="numbers-guessed">
+                <tr>
+                    <td id="board-number-1">01</td>
+                    <td id="board-number-2">02</td>
+                    <td id="board-number-3">03</td>
+                    <td id="board-number-4">04</td>
+                    <td id="board-number-5">05</td>
+                </tr>
+                <tr>
+                    <td id="board-number-6">06</td>
+                    <td id="board-number-7">07</td>
+                    <td id="board-number-8">08</td>
+                    <td id="board-number-9">09</td>
+                    <td id="board-number-10">10</td>
+                </tr>
+                <tr>
+                    <td id="board-number-11">11</td>
+                    <td id="board-number-12">12</td>
+                    <td id="board-number-13">13</td>
+                    <td id="board-number-14">14</td>
+                    <td id="board-number-15">15</td>
+                </tr>
+                <tr>
+                    <td id="board-number-16">16</td>
+                    <td id="board-number-17">17</td>
+                    <td id="board-number-18">18</td>
+                    <td id="board-number-19">19</td>
+                    <td id="board-number-20">20</td>
+                </tr>
+            </table>
+            <p id="message"></p>
+            <p id="label-score">Score: <span id="score">0</span></p>
+            <p id="label-highscore">Highscore: <span id="highscore">0</span></p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
