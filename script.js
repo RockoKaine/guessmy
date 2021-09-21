@@ -6,47 +6,46 @@ const gameMessage = document.getElementById('message');
 const playerScore = document.getElementById('score'); 
 const highScore = document.getElementById('highscore');
 const startingScore = 20;
-let secretNumber;
+let secretNumber = 0;
 let guesses = [];
 
-const allTd = document.querySelectorAll('td');
-console.log("All TDs",allTd);
-
+//
 playerScore.textContent = startingScore;
 highScore.textContent = 0;
+
+
 function randomNumber(){
     secretNumber = Math.floor(Math.random() * 20 + 1);
     console.log(secretNumber)
 }
 
-function checkGuess () {
+
+
+
+
+function checkGuess() {
     theNumber.textContent = playerGuess.value;
-    // here we check if playerGuess is a number the + turns the value to a number
-    if(!isNaN(+playerGuess.value)){
-        if(!guesses.indexOf(+playerGuess.value)){
-            gameMessage.textContent = `You already guessed that. Try Again.`
+    if(isNaN(playerGuess.value)){
+        gameMessage.innerHTML = `<p class="not-a-number">You Didn't Guess A Number</p>`;
+    } else {
+        if(Number(playerGuess.value) === secretNumber){
+            console.log('winner winner chicken dinner!')
+            Number(playerScore.textContent) > Number(highScore.textContent) ? highScore.textContent = playerScore.textContent : playerScore.textContent = playerScore.textContent;
         } else {
-            if(secretNumber == playerGuess.value ){
-                gameMessage.textContent = `You Guessed Correct!`
-                if(+playerScore.textContent > +highScore.textContent){
-                    highScore.textContent = playerScore.textContent;
-                }
-    
+            if(guesses.includes(Number(playerGuess.value))){
+                console.log('you guessed that already');
             } else {
+                let el = document.getElementById(`board-number-${Number(playerGuess.value)}`);
+                guesses.push(Number(playerGuess.value));
+                el.classList.toggle('wrong-guess');
                 playerScore.textContent--;
-                document.getElementById(`board-number-${playerGuess.value}`).classList.add('wrong-guess');
-                guesses.push(playerGuess.value); 
-                gameMessage.textContent = `Wrong! Guess Again.`
-                console.log(document.getElementsByClassName('wrong-guess'))
+                console.log(guesses)
+                
             }
         }
-        
-        
-    } else {
-        gameMessage.innerHTML = `<p class="not-a-number">You Didn't Guess A Number</p>`
-    }
 
-    
+    }
+    playerGuess.value = '';
 }
 
 
@@ -55,9 +54,10 @@ function playAgain(){
     playerScore.textContent = startingScore;
     theNumber.textContent = "?";
     gameMessage.textContent = "";
+    console.log(document.getElementsByClassName('wrong-guess'))
     let wrongGuessesClass = document.getElementsByClassName('wrong-guess');
     for(wrong of wrongGuessesClass){
-        wrong.classList.remove('wrong-guess');
+        wrong.classList.toggle('wrong-guess');
     }
 }
 
